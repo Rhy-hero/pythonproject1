@@ -10,7 +10,7 @@
 
 ```bash
 python -m pip install -r requirements.txt
-python check.py --stage all
+python check.py --stage all > results/check_all.txt
 python run.py --output results/output_tokens.npz
 python -m unittest discover -s tests -v
 python validate_additional.py
@@ -25,7 +25,7 @@ python practice_solutions/numpy_homework.py
 - 资产校验和教师提供的七个数值阶段全部 PASS；10 张图像输出最大绝对误差 5.662e-7。
 - 6 项独立回归测试通过；新图像、输入变化、换序和重复批次均已验证。
 - 12 道既有练习已合并为 `practice_solutions/numpy_homework.py`，输出与原代码一致。
-- 每阶段最大/平均误差见 `results/check_all.txt`；代码说明与详细复现步骤见 `REPRODUCTION.md`。
+- 本仓库提供代码和说明，先前的实测日志及数值结果未公开上传；它们随完整提交包另行提供。执行上述命令可在本地生成 `results/check_all.txt`，详细步骤见 `REPRODUCTION.md`。
 
 ## 报告与提交
 

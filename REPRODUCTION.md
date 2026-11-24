@@ -13,7 +13,7 @@ python -m venv .venv
 # Windows: .venv\Scripts\activate
 # Linux/macOS: source .venv/bin/activate
 python -m pip install -r requirements.txt
-python check.py --stage all
+python check.py --stage all > results/check_all.txt
 python run.py --output results/output_tokens.npz
 ```
 
@@ -54,7 +54,7 @@ python run.py --images path/to/a.jpg path/to/b.png --output my_tokens.npz
 
 资产完整性及以上七个阶段全部 PASS。教师判据为逐元素 `abs(actual-reference) <= atol + rtol*abs(reference)`，`rtol=2e-4`；预处理 `atol=2e-6`，最终输出与批次 `atol=2e-5`，其余 `atol=2e-4`。浮点最后几位可能因 BLAS/平台变化，判断是否通过以该逐元素判据为准。
 
-原始检查记录是 `results/check_all.txt`。`output_tokens.npz` 是本实现新计算的 10×512 输出，不是提供的参考数组。
+原始检查记录和数值结果随完整提交包提供，未公开上传到本仓库。执行上述命令会在本地生成 `results/check_all.txt` 与 `results/output_tokens.npz`；后者是本实现计算的 10×512 输出，不是提供的参考数组。
 
 ## 4. 补充验证与错误定位
 
@@ -68,7 +68,7 @@ python practice_solutions/numpy_homework.py
 - 6 项独立小型回归测试覆盖 patch 顺序、多头索引、注意力数值、因果屏蔽、残差及四维转置。
 - `validate_additional.py` 需要先运行上面的 `run.py`。它生成一张参考集之外的 RGB 渐变图片，验证批次换序/重复一致、输出为有限单位向量且受输入变化影响；同时核对命令行输出与 ID 顺序。
 - `debug_shape_bug.py` 是主动构造的错误复现实验：对 `[B,H,N,64]` 的 K 使用 `K.T` 会颠倒全部轴并导致矩阵乘法失败；修正为 `K.swapaxes(-1,-2)`。该实验不声称教师原框架存在这条错误实现。
-- `practice_solutions/numpy_homework.py` 把之前的 12 道练习合并为题目要求的独立单文件答案，保留 `angle_deg`、`unit_vector`、`angles_to`、`top_k_cosine` 函数名。12 题输出逐题与原代码一致，记录见 `results/practice_equivalence.txt`。
+- `practice_solutions/numpy_homework.py` 把之前的 12 道练习合并为题目要求的独立单文件答案，保留 `angle_deg`、`unit_vector`、`angles_to`、`top_k_cosine` 函数名。12 题输出逐题与原代码一致；对比记录随完整提交包提供，不包含在本代码仓库中。
 
 ## 5. 报告与 Overleaf
 
