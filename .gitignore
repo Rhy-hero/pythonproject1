@@ -1,0 +1,18 @@
+# Course-provided assets are intentionally not redistributed.
+weights/
+assets/
+# Python environments and generated caches.
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+# Local editor and build artifacts.
+.DS_Store
+.vscode/
+.idea/
+build/
+*.aux
+*.log
+*.out
+*.synctex.gz
