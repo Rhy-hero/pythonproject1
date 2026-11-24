@@ -1,7 +1,16 @@
-# Verified outputs
+# Local results directory
 
-Recorded stage checks, regression results, and calculated output tokens.
+The repository contains code and documentation only. Existing execution logs,
+computed arrays, and generated images are provided separately in the assignment
+submission package and are not published here.
 
-The large teacher-supplied checkpoint and reference arrays are excluded.
+To generate your own results, first copy this repository into the teacher's
+student package, keeping the provided weights/ and assets/ directories, then run:
 
-See the repository README for reproduction commands.
+```bash
+python check.py --stage all > results/check_all.txt
+python run.py --output results/output_tokens.npz
+python validate_additional.py
+```
+
+Do not upload the course-provided weights or reference arrays.
